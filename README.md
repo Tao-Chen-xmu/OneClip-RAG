@@ -1,15 +1,15 @@
-# Towards Effective and Efficient Long Video Understanding of Multimodal Large Language Models via One-shot Clip Retrieval 
+# Towards Effective Long Video Understanding of Multimodal Large Language Models via One-shot Clip Retrieval 
 
 ## 👣Introduction
 
-This repository implements OneClip-RAG, an effective and efficient method for long video understanding of Multimodal Large Language Models (MLLMs). OneClip-RAG directly applies cross-modal video chunking and clip retrieval in one single procedure centered on visual-language similarities.
+This repository implements OneClip-RAG, an effective and efficient method for long video understanding of Multimodal Large Language Models (MLLMs). OneClip-RAG directly applies instruction-aware video chunking and clip retrieval in one single procedure centered on visual-language similarities.
 
 ![overview](images/overview.png)
 
 ### Key advantages:
 
-- **Unified Cross-modal Video Chunking and Clip Retrieval:** We study the long video understanding problem of MLLMs from the perspective of video clip, and propose an effective and efficient method called OneClip-RAG.
-- **Instruction Following Enhancement:** We build a new dataset called SynLongVideo with short-video mixups to improve the instruction following capability of OneClip, which is further supported by a coarse-to-fine training regime.
+- **Unified Instruction-aware Video Chunking and Clip Retrieval:** We study the long video understanding problem of MLLMs from the perspective of video clip, and propose an effective and efficient method called OneClip-RAG.
+- **Instruction Following Enhancement:** We build a new dataset called SynLongVideo with short-video mixups to improve the instruction following capability of VL embedding models, and a coarse-to-fine training regime is also proposed for our OneClip-RAG.
 - **Outstanding Model Performance with Low Resource Requirement:** As a plug and play method, OneClip-RAG can greatly improve the performance of different MLLMs on long video understanding benchmarks, supporting the hour-long video inference on only one 4090 GPU.
 
 ## 🛠️ Usage
@@ -30,13 +30,24 @@ The training procedure for OneClip consists of two stages:
    conda env create -f environment.yml
    ```
 
-#### 2. Corase-grained Training:
+#### 2. Prepare Data   
+
+Download the videos from their official sources:
+
+| Dataset  | Official Source |
+|--------|------|
+| QaEgo4D   | [QaEgo4D](https://github.com/lbaermann/qaego4d) |
+| NeXT-QA | [NeXT-QA](https://github.com/doc-doc/NExT-QA) |
+
+The annotation files are provided in `SynLongVideo`.
+
+#### 3. Corase-grained Training
 
 ```
 bash coarse_grained.sh 
 ```
 
-#### 3. Graunlar Training:
+#### 4. Graunlar Training
 
 ```
 bash fine_grained.sh 
